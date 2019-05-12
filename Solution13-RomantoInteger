@@ -1,0 +1,37 @@
+lass Solution {
+    public int romanToInt(String s) {
+    int n = s.length();
+    
+    if (n == 0) return 0;
+    
+    Map<String, Integer> rm = new HashMap<String, Integer>(); 
+    rm.put("I", 1);
+    rm.put("V", 5);
+    rm.put("X", 10);
+    rm.put("L", 50);
+    rm.put("C", 100);
+    rm.put("D", 500);
+    rm.put("M", 1000);
+    rm.put("IV", 4);
+    rm.put("IX", 9);
+    rm.put("XL", 40);
+    rm.put("XC", 90);
+    rm.put("CD", 400);
+    rm.put("CM", 900);
+    
+    int i = 0;
+    int result = 0;
+
+    while (i < n) {
+      if ((i + 2 <= n) && rm.containsKey(s.substring(i, i + 2))) {
+        result += rm.get(s.substring(i, i + 2));
+        i += 2;
+      } else {
+        result += rm.get(s.substring(i, i + 1));
+        i++;
+      }
+    }
+    
+    return result;
+  }
+}
